@@ -1,0 +1,31 @@
+services:
+  resilient-api:
+    build: ./demo/resilient
+    environment:
+      SERVICE_NAME: resilient-api
+    ports:
+      - "8081:3000"
+    restart: unless-stopped
+    labels:
+      chaos.enabled: "true"
+      chaos.service: "resilient-api"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+
+  fragile-api:
+    build: ./demo/fragile
+    environment:
+      SERVICE_NAME: fragile-api
+    ports:
+      - "8082:3000"
+    labels:
+      chaos.enabled: "true"
+      chaos.service: "fragile-api"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 5s
+      timeout: 2s
+      retries: 3

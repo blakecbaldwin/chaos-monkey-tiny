@@ -1,0 +1,1 @@
+{"activeWindow":null,"excludeNames":[],"healthEndpoints":{"fragile-api":"http://localhost:8082/health","resilient-api":"http://localhost:8081/health"},"intervalSeconds":30,"killProbability":1,"labelKey":"chaos.enabled","labelValue":"true","pollIntervalSeconds":1,"recoveryTimeoutSeconds":30,"reportsDir":"reports"}
